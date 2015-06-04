@@ -2,14 +2,14 @@ package dynamicProblems;
 
 public class FindMaxAsc {
 
-	
+
 	int[] rep;
 
 	public FindMaxAsc(int[] rep) {
 		this.rep = rep;
 	}
-	
-	
+
+
 	public void findAsc(){
 		//1. for 2중첩
 		int start = 0, end = 0, max = 0, len=0;

@@ -5,11 +5,11 @@ import java.util.HashMap;
 public class FindSumNumb {
 
 	int[] arr;
-	
+
 	public FindSumNumb(int[] arr) {
 		this.arr=arr;
 	}
-	
+
 	public boolean FindByBF(int k){
 		
 		for(int i=0; i<arr.length; i++){
@@ -21,7 +21,7 @@ public class FindSumNumb {
 		}
 		return false;
 	}
-	
+
 	public boolean FindByHash(int k){
 		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
 		

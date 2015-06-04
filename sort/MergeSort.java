@@ -12,7 +12,7 @@ public class MergeSort {
 			Merge(arr, left, mid+1, right);
 		}
 	}
-	
+
 	public void Merge(int[] arr, int left, int mid, int right){
 		int[] temp = new int[arr.length];
 		int leftEnd = mid-1;

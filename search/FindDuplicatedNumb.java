@@ -6,11 +6,11 @@ import java.util.Collections;
 public class FindDuplicatedNumb {
 
 	int[] arr;
-	
+
 	public FindDuplicatedNumb(int[] arr) {
 		this.arr = arr;
 	}
-	
+
 	public int[] FindByBF(){
 		int[] dupNumb = null;
 		

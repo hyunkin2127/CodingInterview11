@@ -4,16 +4,16 @@ import java.util.concurrent.BlockingQueue;
 public class ProdNCons2 {
 
 	BlockingQueue queue;
-	
+
 	Producer p;
 	Consumer c;
-	
+
 	public ProdNCons2(BlockingQueue queue) {
 			p = new Producer(queue);
 			c = new Consumer(queue);
 	}
-	
-	
+
+
 	class Producer implements Runnable {
 
 		private BlockingQueue queue;

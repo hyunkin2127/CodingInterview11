@@ -3,14 +3,14 @@ package dynamicProblems;
 public class FindMaxSum {
 	
 	//1.전수조사 : for 2중첩을 통해서 전부 비교
-	
+
 	int[] rep;
-	
+
 	public FindMaxSum(int[] a) {
 		this.rep = a;
 	}
-	
-	
+
+
 	public void findSection(){
 		
 		int max=Integer.MIN_VALUE;
@@ -33,7 +33,7 @@ public class FindMaxSum {
 		}
 		System.out.println(max+" "+start+" "+end);
 	}
-	
+
 	public void findSection2(){
 		int max = 0, temp = 0;
 		for(int i=0; i<rep.length; i++){
@@ -46,7 +46,7 @@ public class FindMaxSum {
 		}
 		System.out.println(max);
 	}
-	
+
 	public void findSection3(){
 		int[] m = new int[rep.length];
 		int maxSum =0;

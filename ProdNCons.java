@@ -5,10 +5,10 @@ import java.util.Random;
 public class ProdNCons {
 
 	protected LinkedList list = new LinkedList();
-	protected int MAX = 10; // Queue 크기 
+	protected int MAX = 10; // Queue 크기
 	protected boolean done = false;
-	
-	
+
+
 	//생산자
 	class Producer extends Thread {
 		public void run(){
@@ -32,8 +32,8 @@ public class ProdNCons {
 			}// end of while(true)
 		}//end of run
 	} // end of producer
-	
-	//소비자 
+
+	//소비자
 	class Consumer extends Thread {
 		public void run(){
 			while(true){
@@ -58,7 +58,7 @@ public class ProdNCons {
 			} // end of while(true) 
 		} // end of run
 	} // end of thread
-	
+
 	public ProdNCons(int nP, int nC) {
 		for(int i=0; i<nP; i++){
 			new Producer().start();

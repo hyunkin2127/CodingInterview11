@@ -1,10 +1,5 @@
 package stack;
 
-/**
- * Created by Heon on 2015-06-01.
- * p.180 Q23 사각형 넓이 구하기
- */
-
 public class FindMaxRect{
 
 	int[] rectArr;

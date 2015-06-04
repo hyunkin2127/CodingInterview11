@@ -50,7 +50,7 @@ public class main {
 //		TestHashMap tm = new TestHashMap();
 //		tm.makeHashMap(a);
 	}
-	
+
 	public static void testLL(){
 
 		LinkedList ll = new LinkedList();
@@ -128,7 +128,7 @@ public class main {
 
 		}
 	}
-	
+
 	public static void testBST(){
 
 		BinarySearchTree bst = new BinarySearchTree(new Node(10));
@@ -235,7 +235,7 @@ public class main {
 //			pc.list.notifyAll();
 //		}
 	}
-	
+
 	public static void testGraph(){
 		
 		Graph g = new Graph(new boolean[6][6]);
@@ -264,7 +264,7 @@ public class main {
 		fms.findSection3();
 		
 	}
-	
+
 	public static void testDP_Q20(){
 		int [] a ={-10, 1, 2, 3, 4, -14, -15, 2, 7, 10, 15, 24, 25, -1, -15, -9, -25, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 		FindMaxAsc fma = new FindMaxAsc(a);

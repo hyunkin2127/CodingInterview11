@@ -1,7 +1,7 @@
 package sort;
 
 public class QuickSort {
-	
+
 	public void QuickSort(int[] arr, int low, int high){
 		int pivot;
 		if(high > low){
@@ -10,7 +10,7 @@ public class QuickSort {
 			QuickSort(arr, pivot+1, high);
 		}
 	}
-	
+
 	public int Partition(int[] arr, int low, int high){
 		System.out.println(arr);
 		int temp, left, right, pivotValue = arr[low];

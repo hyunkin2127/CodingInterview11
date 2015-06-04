@@ -19,7 +19,7 @@ public class TestHashMap<K,V> extends HashMap<K, V> {
 //		}
 //		return null;
 	}
-	
+
 	public <T> void makeHashMap(T[] arr){
 		TestHashMap<T, Cnt> hm = new TestHashMap<T, Cnt>(); // hashcode() 리턴값이 int 형이므로 굳이 generic을 쓸필요는 없음
 //	TestHashMap<Integer, Counter> hm = new TestHashMap<Integer, Counter>(); 
@@ -33,11 +33,11 @@ public class TestHashMap<K,V> extends HashMap<K, V> {
 			System.out.println(i.getKey() + " " + i.getValue().cnt);
 		}
 	}
-	
- class Cnt {
-	 int cnt;
-	 
-	 public Cnt(){
+
+	class Cnt {
+		int cnt;
+
+		public Cnt(){
 		 this.cnt=1;
 	 }
  }

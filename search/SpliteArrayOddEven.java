@@ -2,7 +2,7 @@ package search;
 
 public class SpliteArrayOddEven {
 	public int[] arr;
-	
+
 	public SpliteArrayOddEven(int[] arr) {
 		this.arr = arr;
 	}
@@ -13,7 +13,7 @@ public class SpliteArrayOddEven {
 	 * + 정렬조건 : 공간복잡도가 O(1)이어야 하는지 ??
 	 * + 퀵정렬 응용해서 만들기
 	 */
-	
+
 	public void spliteByBF(){
 		int[] temp = new int[arr.length];
 		int left = 0;
@@ -25,7 +25,7 @@ public class SpliteArrayOddEven {
 		}
 		this.arr = temp;
 	}
-	
+
 	public void spliteByQuick(){
 		int left = 0, right = arr.length-1;
 		int temp;
