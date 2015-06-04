@@ -21,7 +21,7 @@ public class main {
 
 	public static void main(String[] args) {
 //		testArrayQueue();
-		testSort();
+//		testSort();
 //
 //		Integer[] a = {8, 9, 51, 122, 36, 4, 65, 15, 12, 13, 24, 26, 27, 48, 19, 20, 44, 88, 29, 8, 64, 2, 8};
 //		Integer[] d={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20};
