@@ -55,9 +55,8 @@ public class BaseSort2 {
 	// 정렬시킬 값을 저장해둔채로, 자기자리를 찾아가도록함. 이때 값을 밀어내면서 자기자리를 찾는다.
 
 	public void insertionSort(){
-		int data;
-		int j;
-		for(int i=0; i<repository.length; i++){
+		int data, j; // j를 밖으로 빼놔야한다. 자바스크립트랑 스코프가 다름을 기억 할 것.
+		for(int i=1; i<repository.length; i++){
 			data = repository[i]; // 정렬시킬 데이터를 보관하고
 			for(j=i-1; j>=0; j--){ // 정렬시킬 데이터의 앞칸에서부터 정렬위치를 찾을때까지 앞쪽으로(오름차순이므로) 배열을 탐색해감
 				if(repository[j] > data) repository[j+1] = repository[j]; // 정렬할 값보다 배열값이 크다면(오름차순이므로) 뒤로 한칸씩 밀어냄

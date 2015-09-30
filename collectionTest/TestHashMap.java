@@ -7,6 +7,7 @@ public class TestHashMap<K,V> extends HashMap<K, V> {
 		//만약 seperateChain 을 구현한다면 여기서 해야함
 		if(super.containsKey(key))	((Cnt)super.get(key)).cnt++; // get(key)는 해당 value의 주소값을 반환한다. 
 		else	super.put(key, value);
+		key.hashCode();
 		return null;
 
 //		containsKey()를 사용하지 않을경우 : hashmap.put()이 이미 map 내부에 해당 key값이 존재할경우 oldvalue를 반환함

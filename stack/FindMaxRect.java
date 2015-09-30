@@ -31,7 +31,7 @@ public class FindMaxRect{
 					tempStart = i+1;
 					tempLen = 1;
 				}
-				else{ // 만약 누적넓이가 더 크다면 임시로 저장된 넓이에 다음칸을 이전높이로 계산한 넓이를 더한다.
+				else{ // 만약 누적넓이가 더 크다면 임시로 저장된 넓이에 다음칸을 이전높이로 계산한 넓이@를 더한다.
 					tempArea += rectArr[i];
 					tempLen++;
 				}

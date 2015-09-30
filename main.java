@@ -2,11 +2,9 @@ import dynamicProblems.FindMaxAsc;
 import dynamicProblems.FindMaxSum;
 import graph.Graph;
 import graph.Traversals;
-import heap.ArrayHeap;
 import heap.ArrayHeap2;
 import linkedList.LinkedList;
 import queue.ArrayQueue;
-import sort.BaseSort2;
 import sort.MergeSort;
 import sort.QuickSort;
 import stack.FindMaxRect;
@@ -20,9 +18,30 @@ import java.util.concurrent.BlockingQueue;
 public class main {
 
 	public static void main(String[] args) {
-//		testArrayQueue();
-//		testSort();
-//
+		//		testArrayQueue();
+		//		testSort();
+		//
+
+		class A{
+			public int one = 1;
+			public int two = 2;
+		};
+
+		class B extends A{
+			public int three = 3;
+			public int four = 4;
+		};
+
+		A aa1 = new A();
+		B bb2 = new B();
+		A aa2 = new B();
+
+		System.out.println(aa1.one + " " + aa2.one);
+
+	testSort();
+
+
+
 //		Integer[] a = {8, 9, 51, 122, 36, 4, 65, 15, 12, 13, 24, 26, 27, 48, 19, 20, 44, 88, 29, 8, 64, 2, 8};
 //		Integer[] d={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20};
 //		int[] c = {20, 22, 23, 24,10,11,12,13,14,15,16,17,18,19};
@@ -33,15 +52,15 @@ public class main {
 //		for(int q : sa.arr){
 //			System.out.println(q);
 //		}
-		
+
 //		testGraph();
 //		testTree();
 //			testHeap();
-			
+
 //		FindSumNumb fs = new FindSumNumb(c);
 //		System.out.println(fs.FindByBF(43));
 //		System.out.println(fs.FindByHash(1));
-		
+
 //		FindMissingNumb fNum = new FindMissingNumb(b);
 //		System.out.println("BF : "+fNum.findNumbByBF());
 //		System.out.println("HASH : "+fNum.findNumbByHash());
@@ -68,12 +87,12 @@ public class main {
 
 		ll.deleteNode(5);
 		ll.deleteNode(3);
-		//		
+		//
 		ll.printList();
 	}
 
 	public static void testArrayQueue(){
-		ArrayQueue aq = new ArrayQueue(5);
+		ArrayQueue<Integer> aq = new ArrayQueue(5);
 
 		aq.enQueue(10);
 		aq.enQueue(11);
@@ -100,8 +119,6 @@ public class main {
 
 		aq.enQueue(20);
 		aq.enQueue(21);
-		aq.enQueue(22);
-
 		aq.printQueue();
 		aq.enQueue(23);
 		aq.enQueue(24);
@@ -111,22 +128,20 @@ public class main {
 
 	public static void testSort(){
 
-		int[] a = {8, 9, 51, 122, 36, 4, 65, 15, 12, 13, 24, 26, 27, 48, 19, 20, 44, 88, 29, 8, 64, 2, 8};
-		MergeSort ms = new MergeSort();
-		QuickSort qs = new QuickSort();
-		System.out.println(a);
+		int[] a = {8, 9, 51, 122, 36, 4, 65, 15, 12, 13, 24, 26, 27, 48, 19, 20, 44, 88, 29, 64, 2};
+		MergeSort ms = new MergeSort(a);
+		QuickSort qs = new QuickSort(a);
 
-		BaseSort2 bs = new BaseSort2(a);
-		bs.selectionSort();
-//		bs.insertionSort();
-//		bs.shellSort();
+//		BaseSort2 bs = new BaseSort2(a);
+//		bs.selectionSort();
+		//		bs.insertionSort();
+		//		bs.shellSort();
 
-//		ms.Merge(a, 0, (a.length-1)/2, a.length-1);
-//		qs.QuickSort(a, 0, a.length-1);
-		for(int b : a){
-			System.out.println(b);
+//				ms.sort(0, a.length-1); //안됨
+//				qs.sort(0, a.length-1); //안됨
+		qs.sort(0, a.length-1);
+		qs.showRepository();
 
-		}
 	}
 
 	public static void testBST(){
@@ -142,13 +157,13 @@ public class main {
 		bst.insertData(bst.root, 7);
 		bst.insertData(bst.root, 1);
 		bst.insertData(bst.root, 11);
-		
-		
+
+
 		bst.inOrder(bst.root);
-		
-		System.out.println("\n"+bst.searchDataByRecur(bst.root, 11).data); 
+
+		System.out.println("\n"+bst.searchDataByRecur(bst.root, 11).data);
 		System.out.println(bst.deleteData(bst.root, 5).data);
-		System.out.println(bst.searchDataByRecur(bst.root, 11).data); 
+		System.out.println(bst.searchDataByRecur(bst.root, 11).data);
 
 		bst.inOrder(bst.root);
 	}
@@ -166,9 +181,9 @@ public class main {
 		t.addByLevel(8);
 		t.addByLevel(9);
 
-//		System.out.println(t.search(t.root, 10));
-//		System.out.println(t.findHeight(t.root));
-//		t.levelOrder();
+		//		System.out.println(t.search(t.root, 10));
+		//		System.out.println(t.findHeight(t.root));
+		//		t.levelOrder();
 		t.inOrder(t.root);
 		System.out.println(t.findSizeByRecur(t.root));
 		System.out.println(t.findSizeByRepeat(t.root));
@@ -177,7 +192,7 @@ public class main {
 		t.inOrder(t.root);
 		System.out.println(t.findSizeByRecur(t.root));
 		System.out.println(t.findSizeByRepeat(t.root));
-//		t.levelOrder();
+		//		t.levelOrder();
 
 	}
 
@@ -212,34 +227,34 @@ public class main {
 	}
 
 	public static void testPC(){
-		
+
 		BlockingQueue queue = new ArrayBlockingQueue(50);
 		//BlockingQueue queue = new LinkedBlockingQueue();
-		
+
 		ProdNCons2 pc2 = new ProdNCons2(queue);
 		Thread p = new Thread(pc2.p);
 		Thread c = new Thread(pc2.c);
-		
+
 		p.start();
 		c.start();
-		
-//		ProdNCons pc = new ProdNCons(4, 3);
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
 
-//		}
-//		synchronized (pc.list) {
-//			pc.done = true;
-//			pc.list.notifyAll();
-//		}
+		//		ProdNCons pc = new ProdNCons(4, 3);
+		//		try {
+		//			Thread.sleep(1000);
+		//		} catch (InterruptedException e) {
+		//			e.printStackTrace();
+
+		//		}
+		//		synchronized (pc.list) {
+		//			pc.done = true;
+		//			pc.list.notifyAll();
+		//		}
 	}
 
 	public static void testGraph(){
-		
+
 		Graph g = new Graph(new boolean[6][6]);
-		
+
 		g.insertEdge(0, 1);
 		g.insertEdge(0, 2);
 		g.insertEdge(1, 3);
@@ -249,11 +264,11 @@ public class main {
 		g.insertEdge(3, 5);
 		g.point = 6;
 		Traversals tv = new Traversals(g);
-		
+
 		tv.DSF(0);
-//			tv.BFS(0);
-				
-		
+		//			tv.BFS(0);
+
+
 	}
 
 	public static void testDP_Q4(){
@@ -262,7 +277,7 @@ public class main {
 		fms.findSection();
 		fms.findSection2();
 		fms.findSection3();
-		
+
 	}
 
 	public static void testDP_Q20(){
@@ -279,5 +294,5 @@ public class main {
 		fmr.calRect();
 
 	}
-	
+
 }

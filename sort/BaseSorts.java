@@ -75,12 +75,8 @@ public class BaseSorts {
 		return arr;
 	}
 
-	public void displayArray(int[] arr)   // 배열의 항목 출력
-	{
-		for (int i=0; i<arr.length; i++)
-		{
-			System.out.print(arr[i] + " ");
-		}
+	public void displayArray(int[] arr){
+		for (int i=0; i<arr.length; i++) System.out.print(arr[i] + " ");
 	}
 
 }
