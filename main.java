@@ -8,6 +8,8 @@ import queue.ArrayQueue;
 import sort.MergeSort;
 import sort.QuickSort;
 import stack.FindMaxRect;
+import stringAlgorithm.Trie;
+import stringAlgorithm.stringExamples;
 import tree.BinarySearchTree;
 import tree.Node;
 import tree.Tree;
@@ -38,9 +40,11 @@ public class main {
 
 		System.out.println(aa1.one + " " + aa2.one);
 
-	testSort();
+//	testSort();
 
+//		testTrie();
 
+		testStringExamples();
 
 //		Integer[] a = {8, 9, 51, 122, 36, 4, 65, 15, 12, 13, 24, 26, 27, 48, 19, 20, 44, 88, 29, 8, 64, 2, 8};
 //		Integer[] d={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20};
@@ -295,4 +299,19 @@ public class main {
 
 	}
 
+	public static void testTrie(){
+		Trie t = new Trie();
+		t.add("APPLE");
+		t.add("APPLESAUCE");
+		t.add("APPLICATION");
+		System.out.println(t.contains("FOO")    + " " + false);
+		System.out.println(t.contains("APPL")   + " " + false);
+		System.out.println(t.contains("APPLES") + " " + false);
+		System.out.println(t.contains("APPLE")  + " " + true);
+	}
+
+	public static void testStringExamples(){
+		stringExamples rs = new stringExamples("This is a apple");
+		rs.parseString();
+	}
 }

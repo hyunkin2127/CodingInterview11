@@ -37,18 +37,19 @@ public class Trie {
 	 *  @param s String to add to the trie
 	 */
 	public void add(String s) {
+
 		HashMap<Character, HashMap> curr_node = root;
 		for (int i = 0, n = s.length(); i < n; i++) {
-			Character c = s.charAt(i);		//입력된 문자열을 하나씩 읽어서
-			if (curr_node.containsKey(c))		//Hashmap내부에 존재하는지 확인하고
+			Character c = s.charAt(i);		//입력된 문자열을 한글자씩씩 읽어서
+			if (curr_node.containsKey(c))		//현재 가리키고 있는 Hashmap내부에 존재하는지 확인하고
 				curr_node = curr_node.get(c);		//있으면 그 노드를 얻어옴(map 내부에 저장된 노드의 주소값을 받아옴) --> 해당 노드에 추가하려고
+
 			else {		//없으면
 				curr_node.put(c, new HashMap<Character, HashMap>());		//새로운 HashMap을 만들어서 삽입
 				curr_node = curr_node.get(c);		//그리고 방금삽입한 Map속의 노드의 주소값을 갖고 있음
 			}
 		}		//이러한 작업을 반복하여 매 글자마다 map에 담고 그 map에 연결시키는 방식
 				//편향트리를 만드는것과 같은 개념
-
 		//모든 문자를 map에 추가하고 나면 마지막으로 문자열의 끝을 알릴 널문자를 추가함
 		curr_node.put('\0', new HashMap<Character, HashMap>(0)); //  종단문자를 키값으로하여 새로운 노드를 삽입
 	}
@@ -88,14 +89,14 @@ public class Trie {
 		else return false;		//아니면 없는걸로 판단
 	}
 
-	public static void main(String[] args) {
-		Trie t = new Trie();
-		t.add("APPLE");
-		t.add("APPLESAUCE");
-		t.add("APPLICATION");
-		System.out.println(t.contains("FOO")    + " " + false);
-		System.out.println(t.contains("APPL")   + " " + false);
-		System.out.println(t.contains("APPLES") + " " + false);
-		System.out.println(t.contains("APPLE")  + " " + true);
-	}
+//	public static void main(String[] args) {
+//		Trie t = new Trie();
+//		t.add("APPLE");
+//		t.add("APPLESAUCE");
+//		t.add("APPLICATION");
+//		System.out.println(t.contains("FOO")    + " " + false);
+//		System.out.println(t.contains("APPL")   + " " + false);
+//		System.out.println(t.contains("APPLES") + " " + false);
+//		System.out.println(t.contains("APPLE")  + " " + true);
+//	}
 }
