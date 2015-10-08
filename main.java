@@ -10,9 +10,8 @@ import sort.QuickSort;
 import stack.FindMaxRect;
 import stringAlgorithm.Trie;
 import stringAlgorithm.stringExamples;
-import tree.BinarySearchTree;
-import tree.Node;
-import tree.Tree;
+import trees.BST;
+import trees.Node;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -23,6 +22,9 @@ public class main {
 		//		testArrayQueue();
 		//		testSort();
 		//
+
+		testBST2();
+
 
 		class A{
 			public int one = 1;
@@ -43,10 +45,7 @@ public class main {
 //	testSort();
 
 //		testTrie();
-
-		testStringExamples();
-
-		assert aa1.one > bb2.three : "asdasd";
+//		testStringExamples();
 
 //		Integer[] a = {8, 9, 51, 122, 36, 4, 65, 15, 12, 13, 24, 26, 27, 48, 19, 20, 44, 88, 29, 8, 64, 2, 8};
 //		Integer[] d={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20};
@@ -150,31 +149,58 @@ public class main {
 
 	}
 
-	public static void testBST(){
+//	public static void testBST(){
+//
+//		BinarySearchTree bst = new BinarySearchTree(new Node(10));
+//		bst.insertData(bst.root, 8);
+//		bst.insertData(bst.root, 15);
+//		bst.insertData(bst.root, 5);
+//		bst.insertData(bst.root, 8);
+//		bst.insertData(bst.root, 4);
+//		bst.insertData(bst.root, 9);
+//		bst.insertData(bst.root, 5);
+//		bst.insertData(bst.root, 7);
+//		bst.insertData(bst.root, 1);
+//		bst.insertData(bst.root, 11);
+//
+//
+//		bst.inOrder(bst.root);
+//
+//		System.out.println("\n"+bst.searchDataByRecur(bst.root, 11).data);
+//		System.out.println(bst.deleteData(bst.root, 5).data);
+//		System.out.println(bst.searchDataByRecur(bst.root, 11).data);
+//
+//		bst.inOrder(bst.root);
+//	}
 
-		BinarySearchTree bst = new BinarySearchTree(new Node(10));
-		bst.insertData(bst.root, 8);
-		bst.insertData(bst.root, 15);
-		bst.insertData(bst.root, 5);
-		bst.insertData(bst.root, 8);
-		bst.insertData(bst.root, 4);
-		bst.insertData(bst.root, 9);
-		bst.insertData(bst.root, 5);
-		bst.insertData(bst.root, 7);
-		bst.insertData(bst.root, 1);
-		bst.insertData(bst.root, 11);
+	public static void testBST2(){
 
+		Node root = new Node(50);
+		BST bb = new BST(root);
+		bb.insert(root, null, 40);
+		bb.insert(root, null, 20);
+		bb.insert(root, null, 60);
+		bb.insert(root, null, 30);
+		bb.insert(root, null, 48);
+		bb.insert(root, null, 70);
+		bb.insert(root, null, 15);
+		bb.insert(root, null, 10);
+		bb.insert(root, null, 13);
+		bb.insert(root, null, 52);
+		bb.insert(root, null, 51);
+		bb.insert(root, null, 55);
+		bb.insert(root, null, 64);
+		bb.insert(root, null, 72);
+		bb.insert(root, null, 8);
 
-		bst.inOrder(bst.root);
+//		System.out.println("BTS2 : " + bb.search(root, 60).getParent().getData());
+		bb.traverseTree(root);
+		bb.delete(root, 60);
+		bb.traverseTree(root);
 
-		System.out.println("\n"+bst.searchDataByRecur(bst.root, 11).data);
-		System.out.println(bst.deleteData(bst.root, 5).data);
-		System.out.println(bst.searchDataByRecur(bst.root, 11).data);
-
-		bst.inOrder(bst.root);
 	}
 
-	public static  void testTree(){
+/*	public static  void testTree(){
 		Tree t = new Tree(new Node(0, null));
 
 		t.addByLevel(1);
@@ -200,7 +226,7 @@ public class main {
 		System.out.println(t.findSizeByRepeat(t.root));
 		//		t.levelOrder();
 
-	}
+	}*/
 
 	public static void testHeap(){
 		ArrayHeap2 ah = new ArrayHeap2(20);
