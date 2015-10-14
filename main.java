@@ -1,7 +1,9 @@
 import dynamicProblems.FindMaxAsc;
 import dynamicProblems.FindMaxSum;
 import graph.Graph;
-import graph.Traversals;
+import graph.MST_Kruskal;
+import graph.ShortestPathFinder;
+import graph.GraphSearch;
 import heap.ArrayHeap2;
 import linkedList.LinkedList;
 import queue.ArrayQueue;
@@ -10,6 +12,7 @@ import sort.QuickSort;
 import stack.FindMaxRect;
 import stringAlgorithm.Trie;
 import stringAlgorithm.stringExamples;
+import trees.AVL;
 import trees.BST;
 import trees.Node;
 
@@ -23,7 +26,12 @@ public class main {
 		//		testSort();
 		//
 
-		testBST2();
+//		testBST2();
+
+//		testAVL();
+//		testGraph();
+//		testGraph2();
+		testMST_Kruskal();
 
 
 		class A{
@@ -40,7 +48,7 @@ public class main {
 		B bb2 = new B();
 		A aa2 = new B();
 
-		System.out.println(aa1.one + " " + aa2.one);
+//		System.out.println(aa1.one + " " + aa2.one);
 
 //	testSort();
 
@@ -175,30 +183,81 @@ public class main {
 
 	public static void testBST2(){
 
-		Node root = new Node(50);
+//		Node root = new Node(50);
+//		BST bb = new BST(root);
+//		bb.insert(root, null, 40);
+//		bb.insert(root, null, 20);
+//		bb.insert(root, null, 60);
+//		bb.insert(root, null, 30);
+//		bb.insert(root, null, 48);
+//		bb.insert(root, null, 70);
+//		bb.insert(root, null, 15);
+//		bb.insert(root, null, 10);
+//		bb.insert(root, null, 13);
+//		bb.insert(root, null, 52);
+//		bb.insert(root, null, 51);
+//		bb.insert(root, null, 55);
+//		bb.insert(root, null, 64);
+//		bb.insert(root, null, 72);
+//		bb.insert(root, null, 8);
+
+				Node root = new Node(50);
 		BST bb = new BST(root);
 		bb.insert(root, null, 40);
 		bb.insert(root, null, 20);
-		bb.insert(root, null, 60);
-		bb.insert(root, null, 30);
-		bb.insert(root, null, 48);
-		bb.insert(root, null, 70);
-		bb.insert(root, null, 15);
-		bb.insert(root, null, 10);
-		bb.insert(root, null, 13);
-		bb.insert(root, null, 52);
-		bb.insert(root, null, 51);
-		bb.insert(root, null, 55);
-		bb.insert(root, null, 64);
-		bb.insert(root, null, 72);
-		bb.insert(root, null, 8);
 
 //		System.out.println("BTS2 : " + bb.search(root, 60).getParent().getData());
 		bb.traverseTree(root);
-		bb.delete(root, 60);
-		bb.traverseTree(root);
+//		bb.delete(root, 60);
+//		bb.traverseTree(root);
 
 	}
+
+	public static void testAVL(){
+
+		Node root = new Node(50);
+		AVL aa = new AVL(root);
+		root = aa.insert(root , 40);
+		aa.insert(root , 60);
+		aa.insert(root , 70);
+		aa.insert(root , 80);
+		aa.insert(root , 45);
+		aa.insert(root , 48);
+		aa.insert(root , 47);
+		aa.insert(root , 43);
+		aa.insert(root , 30);
+		aa.insert(root , 25);
+		aa.insert(root , 27);
+		aa.insert(root , 35);
+		aa.insert(root , 94);
+		aa.insert(root , 90);
+		aa.insert(root , 16);
+		aa.insert(root , 21);
+
+//		LL 회전 -- 50만 나옴
+//		Node root = new Node(50);
+//		AVL aa = new AVL(root);
+//		root = aa.insert(root, 49);
+//		root = aa.insert(root, 48);
+
+
+
+//		//RR 회전 -- 50만 나옴
+//		Node root = new Node(50);
+//		AVL aa = new AVL(root);
+//		root = aa.insert(root, 51);
+//		root = aa.insert(root, 52);
+
+		System.out.println("root.data :  " + root.getData());
+		System.out.println("root.left : " + root.getChild("left").getData());
+		System.out.println("root.right : " + root.getChild("right").getData());
+
+
+
+		aa.traverseTree(root);
+
+	}
+
 
 /*	public static  void testTree(){
 		Tree t = new Tree(new Node(0, null));
@@ -295,10 +354,75 @@ public class main {
 		g.insertEdge(4, 5);
 		g.insertEdge(3, 5);
 		g.point = 6;
-		Traversals tv = new Traversals(g);
+		GraphSearch tv = new GraphSearch(g);
 
 		tv.DSF(0);
 		//			tv.BFS(0);
+
+
+	}
+
+	public  static void testGraph2(){
+//		ShortestPathFinder sf = new ShortestPathFinder(4);
+//		sf.insertEdges(1, 2, 1);
+//		sf.insertEdges(1, 3, 4);
+//		sf.insertEdges(2, 3, 2);
+//		sf.insertEdges(3, 4, 2);
+
+
+		ShortestPathFinder sf = new ShortestPathFinder(7);
+		sf.insertEdges(1, 2, 1);
+		sf.insertEdges(1, 3, 4);
+		sf.insertEdges(2, 4, 5);
+		sf.insertEdges(3, 4, 3);
+		sf.insertEdges(4, 5, 2);
+		sf.insertEdges(4, 6, 5);
+		sf.insertEdges(5, 6, 1);
+//		sf.insertEdges(5, 7, 4);
+		sf.insertEdges(6, 7, 3);
+
+		sf.findShortestPath(1);
+		sf.showWay();
+
+
+	}
+
+	public static void testMST_Kruskal(){
+//		MST_Kruskal mk = new MST_Kruskal(4);
+//		mk.insertEdge(0, 1, 1);
+//		mk.insertEdge(0, 2, 4);
+//		mk.insertEdge(1, 2, 2);
+//		mk.insertEdge(2, 3, 5);
+
+		MST_Kruskal mk = new MST_Kruskal(7);
+		mk.insertEdge(0, 1, 1);
+		mk.insertEdge(0, 2, 4);
+		mk.insertEdge(1, 3, 5);
+		mk.insertEdge(2, 3, 3);
+		mk.insertEdge(3, 4, 2);
+		mk.insertEdge(3, 5, 5);
+		mk.insertEdge(4, 5, 1);
+		mk.insertEdge(5, 6, 3);
+		mk.insertEdge(4, 6, 4);
+		mk.showGraph(0, mk.originAdj);
+		System.out.println("=================================================");
+		mk.makeMST();
+		for(int i=0; i<mk.newAdj.length; i++){
+			for(int j=0; j<mk.newAdj[i].length; j++){
+				if(mk.newAdj[i][j] == Integer.MAX_VALUE) System.out.print("M  ");
+				else System.out.print(mk.newAdj[i][j]+ "  ");
+			}
+			System.out.println();
+		}
+
+//		mk.showGraph(0, mk.newAdj);
+//
+//		for(int i=0; i<mk.newAdj.length; i++){
+//			for(int j=0; j<mk.newAdj[i].length; j++){
+//				System.out.print(mk.newAdj[i][j]+ "  ");
+//			}
+//			System.out.println();
+//		}
 
 
 	}

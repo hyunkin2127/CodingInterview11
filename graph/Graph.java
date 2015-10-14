@@ -19,4 +19,8 @@ public class Graph {
 		return;
 	}
 
+	public void edgeCheckByDFS(int start){
+
+	}
+
 }

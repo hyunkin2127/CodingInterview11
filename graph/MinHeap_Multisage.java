@@ -1,11 +1,11 @@
 package graph;
 
-public class MinHeap
+public class MinHeap_Multisage
 {
 	Node [] heap;   // array for complete binary tree
 	int size;          // number of elements in heap
 
-	public MinHeap(int initialCapacity)
+	public MinHeap_Multisage(int initialCapacity)
 	{    if (initialCapacity < 1)
 		throw new IllegalArgumentException("initialCapacity must be >= 1");
 		heap = new Node [initialCapacity + 1];
@@ -26,7 +26,7 @@ public class MinHeap
 		System.out.println("Heap is full. No insertion.");
 	else {
 		int currentNode = ++size;
-		while (currentNode != 1 && heap[currentNode / 2].bcost > node.bcost)
+		while (currentNode != 1 && heap[currentNode / 2].cost > node.cost)
 		{
 			heap[currentNode] = heap[currentNode / 2];
 			currentNode /= 2;
@@ -49,10 +49,10 @@ public class MinHeap
 		while (child <= size)
 		{
 			// heap[child] should be larger child of currentNode
-			if (child < size && heap[child].bcost > heap[child+1].bcost) child++;
+			if (child < size && heap[child].cost > heap[child+1].cost) child++;
 
 			// can we put lastElement in heap[currentNode]?
-			if (lastNode.bcost <= heap[child].bcost)
+			if (lastNode.cost <= heap[child].cost)
 				break;
 
 

@@ -38,7 +38,7 @@ public class BST {
 		else if(curNode.getData() > data)
 			curNode.setChild(insert(curNode.getChild("left"), curNode, data), "left");
 		else {
-			System.out.println("aleady exist data in Tree");
+			System.out.println("aleady exist data in tree");
 			return null;
 		}
 		return curNode;

@@ -2,7 +2,7 @@ package graph;
 
 import java.util.LinkedList;
 
-public class Traversals {
+public class GraphSearch {
 
 	Graph g;
 	boolean[] Visited;
@@ -14,12 +14,12 @@ public class Traversals {
 	int[][] queue;
 	int[][] visit;  // 좌표에 의한 방문 등록 배열 //
 
-	public Traversals(Graph g) {
+	public GraphSearch(Graph g) {
 		this.g = g;
 		Visited = new boolean[g.point];
 	}
 
-	public Traversals(){// for findWayBFS
+	public GraphSearch(){// for findWayBFS
 		map = new int[21][21];
 		queue = new int[2][100];
 		visit = new int[21][21];

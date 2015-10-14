@@ -23,17 +23,17 @@ public class multistage {
 			G[i][2]=sc.nextInt();
 		}
 
-		//  Node GetBcost(int b, int g[][], int bcost[]);
+		//  Node GetBcost(int b, int g[][], int cost[]);
 
 		for(int j=1; j<pointNum+1 ;j++){ //초기화중
 			Node cnode=new Node(); // 노드를 생성하고
 			cnode=GetBcost(j, G, bcost);
 			// 각 정점(j)의 정보를 getBost함수를 통해 얻어 생성한 노드에 담는다
 
-			bcost[j]=cnode.bcost; // 그리고 그 정보를 또 따로 관리한다.
-			preVertex[j]=cnode.d; // 각 정점에 
+			bcost[j]=cnode.cost; // 그리고 그 정보를 또 따로 관리한다.
+			preVertex[j]=cnode.nodeNum; // 각 정점에
 
-			System.out.println(" Value of Point( "+j+" )  | Cost : "+bcost[j]+" | d : "+preVertex[j]);
+			System.out.println(" Value of Point( "+j+" )  | Cost : "+bcost[j]+" | nodeNum : "+preVertex[j]);
 		}
 
 
@@ -62,8 +62,8 @@ public class multistage {
 	public static Node GetBcost(int b, int g[][], int bcost[])	{
 		if(b==1) return new Node(0,0); // 그래프 시작점이 들어왔을때 
 		int cost;
-		MinHeap h=new MinHeap(g.length);  // 간선의 개수와 같은 크기의 힙을 만들고
- 		// 근데 힙을 매번 만드나 ? --> b라는 점을 향하는 모든 점들을 힙에 넣어서 최소값을 추출
+		MinHeap_Multisage h=new MinHeap_Multisage(g.length);  // 간선의 개수와 같은 크기의 힙을 만들고
+ 		// 근데 힙을 매번 만드나 ? --> b라는 점을 향하는 모든 간선들을 힙에 넣어서 최소값을 추출
 		// 전체노드를 정리하는데 하나의 힙을 사용하는것이 아니라
 		// 각 노드마다 따로 사용함
 
