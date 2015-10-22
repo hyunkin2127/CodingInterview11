@@ -9,6 +9,7 @@ import linkedList.LinkedList;
 import queue.ArrayQueue;
 import sort.MergeSort;
 import sort.QuickSort;
+import sort.quick;
 import stack.FindMaxRect;
 import stringAlgorithm.Trie;
 import stringAlgorithm.stringExamples;
@@ -16,6 +17,7 @@ import trees.AVL;
 import trees.BST;
 import trees.Node;
 
+import java.util.Arrays;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -23,15 +25,15 @@ public class main {
 
 	public static void main(String[] args) {
 		//		testArrayQueue();
-		//		testSort();
-		//
+		testSort();
+//		testquick();
 
 //		testBST2();
 
 //		testAVL();
 //		testGraph();
 //		testGraph2();
-		testMST_Kruskal();
+//		testMST_Kruskal();
 
 
 		class A{
@@ -149,13 +151,26 @@ public class main {
 //		bs.selectionSort();
 		//		bs.insertionSort();
 		//		bs.shellSort();
-
-//				ms.sort(0, a.length-1); //안됨
-//				qs.sort(0, a.length-1); //안됨
-		qs.sort(0, a.length-1);
+//
+//		ms.sort(0, a.length-1); //merge는 잘됨
+//		ms.showRepository();
+		qs.sort(0, a.length-1); //안됨
 		qs.showRepository();
 
 	}
+
+	public static void testquick(){
+
+		int[] list = {10,5,3,8,4,9,1,6,2,7};
+		quick quick = new quick();
+
+		System.out.println("before quick : " + Arrays.toString(list));
+		quick.quickSort(list, 0, list.length - 1);
+		System.out.println("after quick : " + Arrays.toString(list));
+
+
+	}
+
 
 //	public static void testBST(){
 //
@@ -201,7 +216,7 @@ public class main {
 //		bb.insert(root, null, 72);
 //		bb.insert(root, null, 8);
 
-				Node root = new Node(50);
+		Node root = new Node(50);
 		BST bb = new BST(root);
 		bb.insert(root, null, 40);
 		bb.insert(root, null, 20);

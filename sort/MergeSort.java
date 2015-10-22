@@ -52,12 +52,9 @@ public class MergeSort {
 		else
 			for(int i=leftStart; i<=leftEnd; i++, tempIdx++) tempArr[tempIdx] = repository[i];
 
-		System.out.print("left : " + left +" // tempArr : ");
 		for(int i=left; i<=right; i++){
 			repository[i] = tempArr[i];
-			System.out.print(tempArr[i] + "  ");
 		}
-		System.out.println();
 	}
 
 	public void sort(int left, int right){

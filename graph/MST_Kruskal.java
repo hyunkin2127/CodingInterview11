@@ -9,21 +9,18 @@ import java.util.PriorityQueue;
  * Created by Heon on 2015-10-14.
  */
 
-// 필요한것
-// 1. 우선순위 큐(힙)
-// 2. 닫힘 확인용 메서드
-// 3. 등등
-
+//필요한것 : 우선순위 큐, DFS, 닫힘확인용 함수
 
 public class MST_Kruskal {
-
-	boolean[] Visited;
+	boolean[] Visited; // 방문 여부 체크를 위한 배열  Visited[1]==true : 1번 정점은 방문했음
 	public int[][] originAdj; // 원래의 간선 정보를 담을 인접행렬
+	// 사실 생성자에서 간선정보를 큐에 다 넣기 때문에 기존인접행렬은 필요가없으나
+	// 새롭게 선택된 간선들로 이루어진 그래프와의 비교를 위해서 삽입함.
 	public int[][] newAdj; // 새롭게 선택된 간선 정보를 담을 행렬
-	int vNum, eNum;
-	PriorityQueue<Edge> pq; // 간선 오름차순 정렬용
+	int vNum, eNum; // 정점수 ,간선수(간선수는 별 필요는 없는듯?)
+	PriorityQueue<Edge> pq; // 간선 가중치값 정렬을 위한 우선순위 큐
 
-	class Edge {
+	class Edge { //  간선 정보를 담을 객체
 		int from, to, weight;
 		public Edge(int from, int to, int weight){
 			this.from = from;
@@ -31,8 +28,8 @@ public class MST_Kruskal {
 			this.weight = weight;
 		}
 
-		public void getData(){
-			System.out.println("from : "+from+ " // to : "+to+" // weight : "+weight);
+		public void showData(){ //내장 데이터 확인용
+			System.out.println("from : "+from+ " //  to : "+to+" //  weight : "+weight);
 		}
 	}
 
@@ -51,7 +48,7 @@ public class MST_Kruskal {
 		});
 
 		for(int i=0;i<vNum; i++){
-			//인접행렬 초기화
+			// 인접행렬 초기화
 			for(int j=0; j<vNum; j++){
 				originAdj[i][j] = Integer.MAX_VALUE;
 				newAdj[i][j] = Integer.MAX_VALUE;
@@ -59,46 +56,43 @@ public class MST_Kruskal {
 		}
 	}
 
-	public void insertEdge(int from, int to, int weight){
-		originAdj[from][to] = weight; //그래프 탐색을 진행해야 하기 때문에 양방향으로
-		originAdj[to][from] = weight;
-		pq.add(new Edge(from, to, weight));//간선정보를 큐에 담음
+	public void insertEdge(int from, int to, int weight){ // 간선 삽입용 메서드
+		originAdj[from][to] = weight;
+		originAdj[to][from] = weight; // 탐색을 위해 양방향으로 --> 없어도 탐색 잘됨:DSF의 과정이 바뀔 뿐
+		pq.add(new Edge(from, to, weight));// 간선정보를 큐에 담음
 		eNum++;
 	}
 
-	public Edge closeCheckByDFS(int u){//그래프 닫힘 검사용 메서드
-		Visited[u] = true;
-		Edge temp = null;
-		for(int v=0; v<newAdj[u].length; v++){
-			if(!Visited[v] && newAdj[u][v] !=Integer.MAX_VALUE){
-				temp = closeCheckByDFS(v);
-			}
-			else if(Visited[v] && newAdj[u][v] !=Integer.MAX_VALUE){ // 원래 인접행렬에서
-				temp = new Edge(u, v, newAdj[u][v]);
-			}
+	private Edge closeCheckByDFS(int from){ // 그래프 닫힘 검사용 메서드
+		Visited[from] = true; // from 정점을 방문했다고 표시함
+		Edge temp = null; // 닫힌 그래프를 형성시키는 간선을 발견할 경우 이를 반환하기 위한 변수
+		for(int to=0; to<newAdj[from].length; to++){
+			if(!Visited[to] && newAdj[from][to] !=Integer.MAX_VALUE) // 방문하지 않았던 점이면서, 이어진 from과 to가 이어져있다면
+				temp = closeCheckByDFS(to); // to에 대해서 메서드를 다시 수행
+			else if(Visited[to] && newAdj[from][to] !=Integer.MAX_VALUE) // 방문했던 점이면서, from과 to가 이어져 있다면
+				temp = new Edge(from, to, newAdj[from][to]);  // 그 간선은 닫힌 그래프를 형성시키는 간선이므로 해당 간선정보를 반환한다.
 		}
 		return temp;  // null이 반환되면 열린거, 아니면 닫힌거
 	}
 
-	public void resetVisited(){
+	private void resetVisited(){ // DSF를 위한 Visited 배열을 false로 초기화
 		Arrays.fill(Visited, false);
 	}
 
-	public void show(int u, int[][] arr){
-		Visited[u] = true; // 선택된 점을 방문했다고 기록하고
-		for(int v=1; v<arr[u].length; v++){ //
-			if(!Visited[v] && arr[u][v] !=Integer.MAX_VALUE){
-				System.out.println( u+"에서 "+v+"로 이동함");
-				show(v, arr);
-			}//end of if
-		}//end of for v
+	private void showByDSF(int from, int[][] arr){ // 그래프 탐색
+		Visited[from] = true; // 선택된 점을 방문했다고 기록하고
+		for(int to=1; to<arr[from].length; to++){ // 
+			if(!Visited[to] && arr[from][to] !=Integer.MAX_VALUE){
+				System.out.println( from+"에서 "+to+"로 이동함");
+				showByDSF(to, arr);
+			}// end of if
+		}// end of for v
 	}
 
-	public void showGraph(int u, int[][] arr){
+	public void showGraph(int u, int[][] arr){ // 그래프 확인용 출력메서드
 		resetVisited();
-		show(u, arr);
+		showByDSF(u, arr);
 	}
-
 
 	public void makeMST(){
 		// 간선삽입시 간선정보를 pq에 모두 넣어 두었음.
@@ -110,17 +104,14 @@ public class MST_Kruskal {
 		// 2. 할당과정이 완료된 후에 확인을 위한 메서드를 사용한다. 일단 2번으로 !!
 
 		Edge temp; // 우선순위 큐에서 빼낸 간선들을 임시로 저장할 공간
-		Edge first = pq.peek(); // 우선순위 큐에서 처음으로 빼낼 간선 정보
-		first.getData();
-		while(!pq.isEmpty()){ //pq에 있는 간선이 다 떨어질때가지
-			temp = pq.remove(); // 최소 가중치를 갖는 간선을 빼서
-			temp.getData();
-			newAdj[temp.from][temp.to] = temp.weight; //새로운 인접행렬에 할당하고
-			System.out.println("in While " );
-			resetVisited();
-			if(closeCheckByDFS(first.from) != null){//최소비용간선의 시작점을 기준으로 그래프닫힘여부 확인해서 닫혀있다면
+		Edge first = pq.peek(); // 큐에서 첫번째 간선정보를 빼서 담아둠(그래프탐색시 기준점으로 사용)
+		while(!pq.isEmpty()){ // pq에 있는 간선이 다 떨어질때가지
+			temp = pq.remove(); // 최소 가중치값을 갖는 간선을 빼서
+			newAdj[temp.from][temp.to] = temp.weight; // 새로운 인접행렬에 할당하고
+			resetVisited(); // closedCheckByDFS 메서드에서 Visited 배열을 사용하므로 매번 초기화
+			if(closeCheckByDFS(first.from) != null){ // 최소비용간선의 시작점을 기준으로 그래프닫힘여부 확인해서 닫혀있다면
 				newAdj[temp.from][temp.to] = Integer.MAX_VALUE;// 해당간선할당을 해제한다.
-			}
-		}
-	}
+			} // end of if
+		} // end of while
+	} // end of func
 }

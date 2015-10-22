@@ -6,7 +6,6 @@ import java.util.*;
 public class Trie {
 
 	HashMap<Character, HashMap> root; // char Wrapper클래스 Character, hashmap
-
 	/**
 	 *  Default contructor
 	 */
