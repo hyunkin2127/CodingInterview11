@@ -1,5 +1,6 @@
 import dynamicProblems.FindMaxAsc;
 import dynamicProblems.FindMaxSum;
+import etc.memoization;
 import graph.Graph;
 import graph.MST_Kruskal;
 import graph.ShortestPathFinder;
@@ -25,8 +26,9 @@ public class main {
 
 	public static void main(String[] args) {
 		//		testArrayQueue();
-		testSort();
+//		testSort();
 //		testquick();
+		testMemoization();
 
 //		testBST2();
 
@@ -83,6 +85,23 @@ public class main {
 
 //		TestHashMap tm = new TestHashMap();
 //		tm.makeHashMap(a);
+	}
+
+	public static void testMemoization(){
+		memoization memo = new memoization(100);
+
+		long startM = System.nanoTime();
+		memo.memoziedFib(20);
+		long endM = System.nanoTime();
+		System.out.println( endM - startM );
+
+		long startF = System.nanoTime();
+		memo.normalFib(20);
+		long endF = System.nanoTime();
+		System.out.println(endF - startF);
+
+		System.out.println(memo.cnt1 + " // " +memo.cnt2);
+
 	}
 
 	public static void testLL(){
