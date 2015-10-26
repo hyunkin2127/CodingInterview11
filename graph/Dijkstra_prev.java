@@ -2,6 +2,11 @@ package graph;
 
 import java.util.Scanner;
 
+/**
+ * Created by Heon on 2015-10-01.
+ * 망함 - 버리고 다시
+ */
+
 public class Dijkstra_prev {
 
 	public static void main(String[] args){

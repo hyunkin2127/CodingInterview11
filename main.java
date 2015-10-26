@@ -1,10 +1,7 @@
 import dynamicProblems.FindMaxAsc;
 import dynamicProblems.FindMaxSum;
 import etc.memoization;
-import graph.Graph;
-import graph.MST_Kruskal;
-import graph.ShortestPathFinder;
-import graph.GraphSearch;
+import graph.*;
 import heap.ArrayHeap2;
 import linkedList.LinkedList;
 import queue.ArrayQueue;
@@ -28,7 +25,7 @@ public class main {
 		//		testArrayQueue();
 //		testSort();
 //		testquick();
-		testMemoization();
+//		testMemoization();
 
 //		testBST2();
 
@@ -36,25 +33,10 @@ public class main {
 //		testGraph();
 //		testGraph2();
 //		testMST_Kruskal();
+			testDijkstra();
 
 
-		class A{
-			public int one = 1;
-			public int two = 2;
-		};
-
-		class B extends A{
-			public int three = 3;
-			public int four = 4;
-		};
-
-		A aa1 = new A();
-		B bb2 = new B();
-		A aa2 = new B();
-
-//		System.out.println(aa1.one + " " + aa2.one);
-
-//	testSort();
+//		testSort();
 
 //		testTrie();
 //		testStringExamples();
@@ -190,31 +172,6 @@ public class main {
 
 	}
 
-
-//	public static void testBST(){
-//
-//		BinarySearchTree bst = new BinarySearchTree(new Node(10));
-//		bst.insertData(bst.root, 8);
-//		bst.insertData(bst.root, 15);
-//		bst.insertData(bst.root, 5);
-//		bst.insertData(bst.root, 8);
-//		bst.insertData(bst.root, 4);
-//		bst.insertData(bst.root, 9);
-//		bst.insertData(bst.root, 5);
-//		bst.insertData(bst.root, 7);
-//		bst.insertData(bst.root, 1);
-//		bst.insertData(bst.root, 11);
-//
-//
-//		bst.inOrder(bst.root);
-//
-//		System.out.println("\n"+bst.searchDataByRecur(bst.root, 11).data);
-//		System.out.println(bst.deleteData(bst.root, 5).data);
-//		System.out.println(bst.searchDataByRecur(bst.root, 11).data);
-//
-//		bst.inOrder(bst.root);
-//	}
-
 	public static void testBST2(){
 
 //		Node root = new Node(50);
@@ -292,35 +249,6 @@ public class main {
 
 	}
 
-
-/*	public static  void testTree(){
-		Tree t = new Tree(new Node(0, null));
-
-		t.addByLevel(1);
-		t.addByLevel(2);
-		t.addByLevel(3);
-		t.addByLevel(4);
-		t.addByLevel(5);
-		t.addByLevel(6);
-		t.addByLevel(7);
-		t.addByLevel(8);
-		t.addByLevel(9);
-
-		//		System.out.println(t.search(t.root, 10));
-		//		System.out.println(t.findHeight(t.root));
-		//		t.levelOrder();
-		t.inOrder(t.root);
-		System.out.println(t.findSizeByRecur(t.root));
-		System.out.println(t.findSizeByRepeat(t.root));
-		t.remove(t.root, 3);
-		System.out.println("========================================");
-		t.inOrder(t.root);
-		System.out.println(t.findSizeByRecur(t.root));
-		System.out.println(t.findSizeByRepeat(t.root));
-		//		t.levelOrder();
-
-	}*/
-
 	public static void testHeap(){
 		ArrayHeap2 ah = new ArrayHeap2(20);
 		ah.insert(1);
@@ -396,7 +324,7 @@ public class main {
 
 	}
 
-	public  static void testGraph2(){
+	public static void testGraph2(){
 //		ShortestPathFinder sf = new ShortestPathFinder(4);
 //		sf.insertEdges(1, 2, 1);
 //		sf.insertEdges(1, 3, 4);
@@ -421,12 +349,44 @@ public class main {
 
 	}
 
+	public static void testDijkstra(){
+
+//		Dijkstra d = new Dijkstra(6);
+//		d.insertEdges(0, 1, 1);
+//		d.insertEdges(0, 2, 3);
+//		d.insertEdges(1, 3, 5);
+//		d.insertEdges(2, 4, 4);
+//		d.insertEdges(3, 5, 2);
+//		d.insertEdges(4, 5, 2);
+//		d.findWay(0);
+//		d.showWay();
+
+		Dijkstra_complete d = new Dijkstra_complete(14);
+		d.insertEdges(0, 1, 1);
+		d.insertEdges(0, 2, 2);
+		d.insertEdges(0, 3, 3);
+		d.insertEdges(1, 4, 4);
+		d.insertEdges(1, 5, 5);
+		d.insertEdges(2, 5, 6);
+		d.insertEdges(3, 6, 11);
+		d.insertEdges(3, 12, 15);
+		d.insertEdges(4, 7, 8);
+		d.insertEdges(5, 7, 9);
+		d.insertEdges(5, 8, 10);
+		d.insertEdges(6, 8, 11);
+		d.insertEdges(7, 9, 1);
+		d.insertEdges(7, 10, 2);
+		d.insertEdges(8, 10, 3);
+		d.insertEdges(9, 11, 4);
+		d.insertEdges(10, 11, 5);
+		d.insertEdges(10, 12, 6);
+		d.insertEdges(11, 13, 3);
+		d.insertEdges(12, 13, 4);
+		d.findWay(0);
+		d.showWay();
+	}
+
 	public static void testMST_Kruskal(){
-//		MST_Kruskal mk = new MST_Kruskal(4);
-//		mk.insertEdge(0, 1, 1);
-//		mk.insertEdge(0, 2, 4);
-//		mk.insertEdge(1, 2, 2);
-//		mk.insertEdge(2, 3, 5);
 
 		MST_Kruskal mk = new MST_Kruskal(7);
 		mk.insertEdge(0, 1, 1);

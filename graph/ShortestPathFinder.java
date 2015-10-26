@@ -1,11 +1,13 @@
 package graph;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
 /** https://namu.wiki/w/%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98
  *  Created by Heon on 2015-10-13.
+ *  망함 - 버리고 다시 만들자
  */
 public class ShortestPathFinder {
 
@@ -50,8 +52,6 @@ public class ShortestPathFinder {
 		for(int i=0; i<vNum+1; i++){
 			dist[i] = edges[start][i]; // dist[i] : 정점 i까지 가는데 필요한 비용(가중치합)
 		}
-
-
 				class Edge{
 					public int from;
 					public int to;
@@ -62,7 +62,6 @@ public class ShortestPathFinder {
 						this.to = to;
 						this.weight = weight;
 			}
-
 		}
 
 		PriorityQueue pq = new PriorityQueue<Edge>(edges.length, new Comparator<Edge>() {
@@ -73,7 +72,6 @@ public class ShortestPathFinder {
 		});
 
 		for(int i=0; i<vNum; i++){
-
 			for(int j=0; j<vNum; j++){ //start를 시작점으로하는 모든 간선정보를 큐에 넣고
 				pq.add(new Edge(start, j, edges[start][j]));
 			}
@@ -83,12 +81,11 @@ public class ShortestPathFinder {
 				dist[i] = dist[start] + min.weight;
 				path[i] = start;
 			}
-
 		}
 	}
 
 	public void addNodesToPQ(int from, PriorityQueue pq){
-		//우선순위큐를 선언해서 from 정점으로부터 이어진 하는 노드들을 담고
+		//우선순위큐를 선언해서 from 정점으로부터 이어진 노드들을 담고
 		for(int i=0; i<vNum+1; i++){
 			if(edges[from][i] != Integer.MAX_VALUE){ //from으로 부터 이어진 노드들을 추가해야되는데
 				//이전 노드까지의 비용에 간선의 가중치를 더해서 넣자.
@@ -103,8 +100,8 @@ public class ShortestPathFinder {
 	//한 정점에 이르는 경로가 여러가지 일경우에
 	public void findShortestPath(int start){
 
-		dist[start] = 0;
-		path[start] = 0;
+		dist[start] = 0; //시작점까지의 비용은 0
+		path[start] = 0; //시작점 이전에 들러야할 정점은 없음
 
 		for(int i=1; i<vNum+1; i++){
 			dist[i] = edges[start][i]; // dist[i] : 정점 i까지 가는데 필요한 비용(가중치합)
@@ -116,17 +113,20 @@ public class ShortestPathFinder {
 				return e1.cost - e2.cost;
 			}
 		});
-
+		HashMap<Integer, Node> hm = new HashMap<Integer, Node>(edges.length);
+		pq.add(new Node(dist[start]+edges[0][start], start, start));
 		for(int from=start; from<vNum+1 && path[from] != Integer.MAX_VALUE; from++){
 //			addNodesToPQ(i, pq);// 시작점을 넣고
+
 			for(int to=1; to<vNum+1; to++){
-				if(edges[from][to] != Integer.MAX_VALUE && from != to){ //from으로 부터 이어진 노드들을 추가해야되는데
+				if(edges[from][to] != Integer.MAX_VALUE && from != to){//from으로 부터 이어진 노드들을 추가해야되는데
 					//이전 노드까지의 비용에 간선의 가중치를 더해서 넣자.
 					//그럴려면 이전 정점의 코스트가 필요하다. --> 노드 정보를 모아서 관리해야 함 --> 이게 dist????
 					//pq에 새로운 노드(해당노드까지가는데 드는비용, 노드 번호)를 생성하여 삽입
-
 					System.out.println("dist["+from+"]:"+ dist[from] + " // edges["+from+"]["+to+"]:"+ edges[from][to]);
-					pq.add(new Node(dist[from] + edges[from][to], to, from));
+					Node n = new Node(dist[from] + edges[from][to], to, from);
+					pq.add(n);
+					hm.put(to, n);
 				}
 			}
 			Iterator it = pq.iterator();
@@ -138,8 +138,25 @@ public class ShortestPathFinder {
 
 			Node minNode = (Node)pq.remove(); // 최소값을 갖는 노드를 반환받았다
 			System.out.println("minNode info : nodeNum : "+ minNode.nodeNum+" // cost : " + minNode.cost + " // prevNode : "+minNode.prevNode + " // dist[nodeNum] : " + dist[minNode.nodeNum]);
+			//
+			// 여기서 문제는 큐 안에 노드 정보가 계속 남아있다는 것.
+			// 정점 반환기준을 해당정점에 이르는 최소값만을 기준으로 하기 때문에
+			// 이후 정점 선택시,  이전선택된 정점에 연결되어 있지 점이라 할지라도 단순히 cost가 최소인 정점이 반환된다.
+			// 그래서 연걸되어있지 않은 정점들로 그래프 최단거리가 구성될 수 있다.
 
-			if( minNode.cost <= dist[minNode.nodeNum] ){
+			// 해결책 : 지나온 정점에 대해서만 다음 간선을 선택하도록 해야한다. 어떻게 ???
+			// 1. 방문 여부 검사 :  할 수는 있겠지만 뭔가 복잡해 질듯 만약 한다면 스패닝트리에서 사용한 방법 응용하면 될듯
+			//		--> path 배열이나 distance 배열을 이용해서 하면 될거같음. --> 이거 간단하게 할려면 hashmap 써야되는데 너무 일이 커지는거 아냐???.
+
+			// 2. 큐를 매번 새롭게 생성한다 : 이게 가장 쉬울듯???? 이렇게 하면 큐에 기존의 노드가 남아있지 않게 되니까
+			//	선택되지 않은 정점에 연결된 노드들은 자연스럽게 버려지게 될거 같은데. -->> 이걸로
+			//	2번 방식 문제점 : 오로지 from으로 부터 이어지는 정점만을 대상으로 하여 다음 정점을 선택하기 때문에
+			//	이전 정점에 연결되어 있으나 비용이 커서 선택되지 못했던 정점들(그러나 현재 노드의 간선비용보다는 적은)이 배제된다.
+			// - 이방식 안됨. 기존에 multistage.java는 다단계 그래프로 한번 정점을 선택하고나면 이전단계에 대해선 생각할 필요가 없었지만
+			// 원래의 다익스트라 알고리즘은 다름
+
+
+			if(hm.containsKey(minNode.prevNode) &&  minNode.cost <= dist[minNode.nodeNum] ){
 				dist[minNode.nodeNum] = minNode.cost;
 				path[minNode.nodeNum] = minNode.prevNode; // from을 사용하면 연결되지 않은 정점과 연결되는 상황이 발생한다.
 				System.out.println("dist["+minNode.nodeNum+"] : "+dist[minNode.nodeNum] +" // path["+minNode.nodeNum+"] : "+path[minNode.nodeNum]);
@@ -147,6 +164,16 @@ public class ShortestPathFinder {
 			System.out.println("=================================================");
 		}
 	}
+
+	public PriorityQueue<Node> createQueue(int len){
+		return new PriorityQueue<Node>(len, new Comparator<Node>() {
+			@Override
+			public int compare(Node e1, Node e2) {
+				return e1.cost - e2.cost;
+			}
+		});
+	}
+
 
 	public void showWay(){
 
@@ -173,7 +200,6 @@ public class ShortestPathFinder {
 
 
 	public void findWay(int start){
-
 		for(int i=0; i<vNum+1; i++){
 			dist[i] = edges[start][i];
 			path[i] = start;
