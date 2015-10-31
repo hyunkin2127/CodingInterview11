@@ -4,6 +4,9 @@ package sort;
  * Created by Heon on 2015-06-05.
  * 퀵 정렬 : 피벗 값을 설정하고 low, high를 포인터로하여 배열을 훓으면서
  *  {a,b,d,f, ... } <  pivot < {c,e,h, .... } 형태로 정렬 시키는 방법 . 이를 피벗 앞뒤의 구간에 대해 각각 재귀적으로 수행하여 정렬을 완성한다
+ *
+ *  퀵정렬은 이미 정렬되어 있는 데이터를 재정렬할때 최악의 성능을 낸다 : O(N^2)  평균은 O(N*logN)
+ *
  */
 public class QuickSort {
 

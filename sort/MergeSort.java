@@ -3,8 +3,7 @@ package sort;
 /**
  * Created by Heon on 2015-06-05.
  * 병합정렬 : 분할정복을 통한 정렬방법 배열을 가능한한 작게 분할하여 이를 병합하며 병합대상간의 대소비교를 통해 정렬한다.
- *  1. merge :
- *  2. sort :
+ * 최악의 경우 nlogn 최선의 경우도 nlogn. 보조공간 필요 (n)
  */
 
 public class MergeSort {

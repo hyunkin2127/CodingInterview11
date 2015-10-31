@@ -2,6 +2,7 @@ import dynamicProblems.FindMaxAsc;
 import dynamicProblems.FindMaxSum;
 import etc.memoization;
 import graph.*;
+import heap.ArrayHeap;
 import heap.ArrayHeap2;
 import linkedList.LinkedList;
 import queue.ArrayQueue;
@@ -11,18 +12,22 @@ import sort.quick;
 import stack.FindMaxRect;
 import stringAlgorithm.Trie;
 import stringAlgorithm.stringExamples;
+import threads.threadExams;
 import trees.AVL;
 import trees.BST;
 import trees.Node;
+import algorithm.drawingLots;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Stack;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public class main {
 
 	public static void main(String[] args) {
-		//		testArrayQueue();
+//		testArrayQueue();
 //		testSort();
 //		testquick();
 //		testMemoization();
@@ -33,9 +38,10 @@ public class main {
 //		testGraph();
 //		testGraph2();
 //		testMST_Kruskal();
-			testDijkstra();
-
-
+//		testDijkstra();
+//		testLots();
+//		testExtends();
+//			testThread();
 //		testSort();
 
 //		testTrie();
@@ -44,7 +50,21 @@ public class main {
 //		Integer[] a = {8, 9, 51, 122, 36, 4, 65, 15, 12, 13, 24, 26, 27, 48, 19, 20, 44, 88, 29, 8, 64, 2, 8};
 //		Integer[] d={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20};
 //		int[] c = {20, 22, 23, 24,10,11,12,13,14,15,16,17,18,19};
-//		int[] b={1,14,4,5,2,6,9,3,12,10,7,8,20,15,13,11,17,19,16}; //18
+		int[] b={1,14,4,5,2,6,9,3,12,10,7,8,20,15,13,11,17,19,16}; //18
+//
+	 String a = "abcd";
+		char[] q = a.toCharArray();
+		 System.out.println(q[0]);
+
+		String qwe = Arrays.toString(q);
+		System.out.println(qwe);
+//		System.out.println(q);
+//		int[] q = testArr(c);
+//		System.out.println(c);
+//		System.out.println(q[1]);
+
+
+
 
 //		SpliteArrayOddEven sa = new SpliteArrayOddEven(c);
 //		sa.spliteByQuick();
@@ -67,6 +87,24 @@ public class main {
 
 //		TestHashMap tm = new TestHashMap();
 //		tm.makeHashMap(a);
+	}
+
+
+
+
+	public static void testThread(){
+
+		threadExams te = new threadExams();
+		te.processThread();
+
+	}
+
+	public static int[] testArr(int[] a){
+		// 배열을 함수로 전달하면 해당 배열의 주소로 접근해서
+		// 전달된 배열 자체에 변경이 일어난다.
+		int[] b = a.clone();
+		b[0] = 0;
+		return b;
 	}
 
 	public static void testMemoization(){
@@ -460,4 +498,77 @@ public class main {
 		stringExamples rs = new stringExamples("This is a apple");
 		rs.parseString();
 	}
+
+	public static void testLots(){
+
+		int[] c = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13, 14, 16, 18, 20, 21, 23, 26, 28, 30, 31, 33, 34, 37, 39, 41, 45, 47, 49,
+								51, 54, 57, 60, 64, 67, 69, 73, 76, 77, 81, 89};
+
+		drawingLots dl = new drawingLots(c);
+		boolean isSuccess;
+		
+		long start = System.nanoTime();
+		isSuccess = dl.canWin1(c, 231);
+		long end = System.nanoTime();
+		System.out.println((end-start) + " // "+ isSuccess);
+
+		long start2 = System.nanoTime();
+		isSuccess = dl.canWin2(c, 231);
+		long end2 = System.nanoTime();
+		System.out.println((end2-start2) + " // "+ isSuccess);
+
+		long start3 = System.nanoTime();
+		isSuccess = dl.canWin3(c, 231);
+		long end3 = System.nanoTime();
+		System.out.println((end3-start3) + " // "+ isSuccess);
+
+		long start4 = System.nanoTime();
+		isSuccess = dl.canWin4(c, 231);
+		long end4 = System.nanoTime();
+		System.out.println((end4-start4) + " // "+ isSuccess);
+
+		long start5 = System.nanoTime();
+		isSuccess = dl.canWin5(c, 231);
+		long end5 = System.nanoTime();
+		System.out.println((end5-start5) + " // "+ isSuccess);
+	}
+
+	public static void testExtends(){
+
+
+		abstract class  A{
+			int a =10;
+			public void showA(){
+				System.out.println(a);
+			}
+
+			abstract public void showB();
+		}
+
+		class B extends A{
+			int b = 20;
+
+			public void showA(){
+				System.out.println(a+3);
+			}
+
+			public void showB() {
+				System.out.println(b);
+			}
+		}
+
+		A aa = new B();
+		B bb = new B();
+
+		aa.showA(); // 자식메서드에서 오버라이딩한 함수는 부모메서드 자료형에 넣더라도 잘 실행된다. // C++에서는 안된다
+		aa.showB(); // 추상클래스를 상속받아서 추상메서드를 구현하면, 자식메서드를 부모메서드자료형에 넣어도 실행가능
+		bb.showA();
+
+
+
+	}
+
+
+
+
 }
