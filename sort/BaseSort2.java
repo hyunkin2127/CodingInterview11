@@ -8,6 +8,12 @@ public class BaseSort2 {
 		repository = arr;
 	}
 
+	public void showArr(){
+		for(int a : repository){
+			System.out.println(a);
+		}
+	}
+
 	// 1. 버블정렬 : 인접한 두개의 데이터를 비교해가면서 정렬을 행하는 방법
 	// 정렬된 데이터는 정렬 범위에서 제외시킨다.
 	public void bubbleSort(){ // 오름차순으로
@@ -63,6 +69,8 @@ public class BaseSort2 {
 				else break; // 자기 자리 찾으면 탈출
 			}
 			repository[j+1] = data; // 찾은 위치에 정렬대상을 삽입
+			// j+1에 삽입하는 이유는 위의 for문을 벗어날때 for안으로 진입하면서 j--가 한번 실행되었기 때문.
+			// 즉, 불필요하게 j가 한번더 감소 되었으므로 j+1을 해줘야 인덱스에서 벗어나지 않게 된다.
 		}
 	}
 

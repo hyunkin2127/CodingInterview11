@@ -6,6 +6,7 @@ import heap.ArrayHeap;
 import heap.ArrayHeap2;
 import linkedList.LinkedList;
 import queue.ArrayQueue;
+import sort.BaseSort2;
 import sort.MergeSort;
 import sort.QuickSort;
 import sort.quick;
@@ -42,7 +43,8 @@ public class main {
 //		testLots();
 //		testExtends();
 //			testThread();
-//		testSort();
+		testSort();
+//		testXOR();
 
 //		testTrie();
 //		testStringExamples();
@@ -50,14 +52,13 @@ public class main {
 //		Integer[] a = {8, 9, 51, 122, 36, 4, 65, 15, 12, 13, 24, 26, 27, 48, 19, 20, 44, 88, 29, 8, 64, 2, 8};
 //		Integer[] d={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20};
 //		int[] c = {20, 22, 23, 24,10,11,12,13,14,15,16,17,18,19};
-		int[] b={1,14,4,5,2,6,9,3,12,10,7,8,20,15,13,11,17,19,16}; //18
+//		int[] b={1,14,4,5,2,6,9,3,12,10,7,8,20,15,13,11,17,19,16}; //18
+//	 String a = "abcd";
+//		char[] q = a.toCharArray();
+//		 System.out.println(q[0]);
 //
-	 String a = "abcd";
-		char[] q = a.toCharArray();
-		 System.out.println(q[0]);
-
-		String qwe = Arrays.toString(q);
-		System.out.println(qwe);
+//		String qwe = Arrays.toString(q);
+//		System.out.println(qwe);
 //		System.out.println(q);
 //		int[] q = testArr(c);
 //		System.out.println(c);
@@ -90,7 +91,35 @@ public class main {
 	}
 
 
+public static void testXOR(){
+	// 코딩인터뷰 p.416  중복되는수와 빠진숫자 찾기
+	// 이거 실행하면 잘 되는데 원리를 모르겠네
+	// 문제점 : 중복된수가 2개 이상일 경우 결과값이 0 으로 나옴
+	int[] b={2,1, 7, 4, 5, 6, 3, 14, 9, 10, 11, 12, 13, 8, 15, 16, 17, 19, 19};
+	int temp = b[0];
+	int setBit;
+	int x = 0; // 중복되는 수
+	int y = 0; // 빠진 수
 
+	for(int i=1; i<b.length; i++) temp ^= b[i]; // 배열원소 간 XOR 연산
+	System.out.println("temp(XOR b[]): "+temp);
+	for(int i=1; i<=b.length; i++) temp ^= i; // 배열 원소 XOR 연산 결과에 1~N까지 XOR 연산
+	System.out.println("temp(XOR b[], i ): "+temp);
+	setBit = temp & ~(temp-1); // 전체 XOR 연산 결과에서 1로 세팅되어있는 가장 오른쪽 비트 확인
+
+	for(int i=0; i<b.length; i++){
+		System.out.println("b["+i+"] : " +b[i]+ " // b["+i+"] & setBit : "+ (b[i] & setBit));
+		if((b[i] & setBit) > 0 ) x = x^b[i];
+		else y = y^b[i];
+	}
+
+	for(int i=1; i<=b.length; i++){
+		if( (i & setBit) > 0) x = x ^ i;
+		else y = y ^ i;
+	}
+
+	System.out.println("DuplicatedNum : "+ x +" // MissingNum : " + y);
+}
 
 	public static void testThread(){
 
@@ -183,18 +212,19 @@ public class main {
 	public static void testSort(){
 
 		int[] a = {8, 9, 51, 122, 36, 4, 65, 15, 12, 13, 24, 26, 27, 48, 19, 20, 44, 88, 29, 64, 2};
-		MergeSort ms = new MergeSort(a);
-		QuickSort qs = new QuickSort(a);
+//		MergeSort ms = new MergeSort(a);
+//		QuickSort qs = new QuickSort(a);
 
-//		BaseSort2 bs = new BaseSort2(a);
+		BaseSort2 bs = new BaseSort2(a);
 //		bs.selectionSort();
-		//		bs.insertionSort();
-		//		bs.shellSort();
-//
+//		bs.insertionSort();
+				bs.shellSort();
+		bs.showArr();
+
 //		ms.sort(0, a.length-1); //merge는 잘됨
 //		ms.showRepository();
-		qs.sort(0, a.length-1); //안됨
-		qs.showRepository();
+//		qs.sort(0, a.length-1); //안됨
+//		qs.showRepository();
 
 	}
 
