@@ -33,7 +33,7 @@ public class main {
 //		testquick();
 //		testMemoization();
 
-//		testBST2();
+		testBST2();
 
 //		testAVL();
 //		testGraph();
@@ -43,7 +43,7 @@ public class main {
 //		testLots();
 //		testExtends();
 //			testThread();
-		testSort();
+//		testSort();
 //		testXOR();
 
 //		testTrie();
@@ -242,28 +242,28 @@ public static void testXOR(){
 
 	public static void testBST2(){
 
-//		Node root = new Node(50);
-//		BST bb = new BST(root);
-//		bb.insert(root, null, 40);
-//		bb.insert(root, null, 20);
-//		bb.insert(root, null, 60);
-//		bb.insert(root, null, 30);
-//		bb.insert(root, null, 48);
-//		bb.insert(root, null, 70);
-//		bb.insert(root, null, 15);
-//		bb.insert(root, null, 10);
-//		bb.insert(root, null, 13);
-//		bb.insert(root, null, 52);
-//		bb.insert(root, null, 51);
-//		bb.insert(root, null, 55);
-//		bb.insert(root, null, 64);
-//		bb.insert(root, null, 72);
-//		bb.insert(root, null, 8);
-
 		Node root = new Node(50);
 		BST bb = new BST(root);
 		bb.insert(root, null, 40);
 		bb.insert(root, null, 20);
+		bb.insert(root, null, 60);
+		bb.insert(root, null, 30);
+		bb.insert(root, null, 48);
+		bb.insert(root, null, 70);
+		bb.insert(root, null, 15);
+		bb.insert(root, null, 10);
+		bb.insert(root, null, 13);
+		bb.insert(root, null, 52);
+		bb.insert(root, null, 51);
+		bb.insert(root, null, 55);
+		bb.insert(root, null, 64);
+		bb.insert(root, null, 72);
+		bb.insert(root, null, 8);
+
+//		Node root = new Node(50);
+//		BST bb = new BST(root);
+//		bb.insert(root, null, 40);
+//		bb.insert(root, null, 20);
 
 //		System.out.println("BTS2 : " + bb.search(root, 60).getParent().getData());
 		bb.traverseTree(root);

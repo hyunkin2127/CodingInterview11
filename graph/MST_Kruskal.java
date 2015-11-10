@@ -67,8 +67,8 @@ public class MST_Kruskal {
 		Visited[from] = true; // from 정점을 방문했다고 표시함
 		Edge temp = null; // 닫힌 그래프를 형성시키는 간선을 발견할 경우 이를 반환하기 위한 변수
 		for(int to=0; to<newAdj[from].length; to++){
-			if(!Visited[to] && newAdj[from][to] !=Integer.MAX_VALUE) // 방문하지 않았던 점이면서, 이어진 from과 to가 이어져있다면
-				temp = closeCheckByDFS(to); // to에 대해서 메서드를 다시 수행
+			if(!Visited[to] && newAdj[from][to] !=Integer.MAX_VALUE) // 방문하지 않았던 점이면서, from과 to가 이어져있다면
+				temp = closeCheckByDFS(to); // to로 부터 메서드를 다시 수행
 			else if(Visited[to] && newAdj[from][to] !=Integer.MAX_VALUE) // 방문했던 점이면서, from과 to가 이어져 있다면
 				temp = new Edge(from, to, newAdj[from][to]);  // 그 간선은 닫힌 그래프를 형성시키는 간선이므로 해당 간선정보를 반환한다.
 		}

@@ -33,6 +33,12 @@ public class BST {
 			curNode.setParent(parNode);
 			return curNode;
 		}
+		// 이방식이 잘되긴 하는데
+		// 약간애매한 부분은 새로운 노드를 삽입할때마다 자식 할당이 새롭게 이루어진다는 점이다.
+		// 그래야 트리 구조를 유지하니까 ????  아니지 이진탐색트리는 한번 삽입되고난 후에는
+		// 삭제되기 전까지 그 위치가 변경되지 않으니까 불필요한 자식노드 할당작업(setchild())이 반복되는 것 같아보이는데
+		// 시간복잡도상의 증가는 이루어 지지는 않지만 뭔가 낭비되는거 같음
+
 		if(curNode.getData() < data) // 현재노드의 자식으로 오른쪽에 새로운 data를 할당한다.
 			curNode.setChild(insert(curNode.getChild("right"), curNode, data), "right");
 		else if(curNode.getData() > data)
